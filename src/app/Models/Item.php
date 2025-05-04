@@ -11,9 +11,9 @@ class Item extends Model
 
     protected $fillable = ['id', 'img_url', 'name', 'description', 'price', 'user_id', 'category', 'condition', 'color'];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsToMany(User::class, 'likes', 'item_id', 'user_id');
     }
 
     public function sold()

@@ -48,13 +48,12 @@ class ItemController extends Controller
 
         $user = Auth::user();
 
-        // リクエストされた画像ファイルをS3に保存
         $img = $request->file('img_url');
-        $path = $img->store('images', 's3');  // S3ディスクに保存
+        $path = $img->store('images', 'public');
 
         // アイテムの保存
         $item = Item::create([
-            'img_url' => $path,  // S3のパス
+            'img_url' => $path,
             'category' => $request->category,
             'condition' => $request->condition,
             'name' => $request->name,
@@ -77,7 +76,6 @@ class ItemController extends Controller
             ['created_at' => now(), 'updated_at' => now()]
         );
 
-        // `category_items` テーブルに商品とカテゴリの関連付けを保存
         DB::table('category_items')->insert([
             'item_id' => $item->id,
             'category_id' => $category->id,
@@ -92,9 +90,7 @@ class ItemController extends Controller
     public function detail($id)
     {
         $item = Item::find($id);
-        // S3のURLを取得
-        $imageUrl = Storage::disk('s3')->url($item->img_url);
-    
+        $imageUrl = Storage::url($item->img_url);
 
         return view('detail', compact('item', 'imageUrl'));
     }

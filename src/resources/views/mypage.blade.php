@@ -11,7 +11,7 @@
         <div class="mypage__details">
             <div class="left">
                 @if($is_image)
-                <img class="profile__img" src="{{ Storage::disk('s3')->url('profile_images/' . Auth::id() . '.jpg') }}?v={{ time() }}" alt="プロフィール画像">
+                <img class="profile__img" src="{{ asset('storage/profile_images/' . Auth::id() . '.jpg') }}?v={{ time() }}" alt="プロフィール画像">
                 @else
                 <div class="profile__img-placeholder"></div>
                 @endif
@@ -36,7 +36,7 @@
             @foreach($listedItems as $item)
             <div class="product__item">
                 <a href="{{ route('detail', ['id' => $item->id]) }}" class="image__link">
-                    <img src="{{ Storage::disk('s3')->url($item->img_url) }}" alt="{{ $item->name }}" class="post__img">
+                    <img src="{{ Storage::url($item->img_url) }}" alt="{{ $item->name }}" class="post__img">
                 </a>
             </div>
             @endforeach
@@ -47,7 +47,7 @@
             @foreach($purchasedItems as $item)
             <div class="product__item">
                 <a href="{{ route('detail', ['id' => $item->id]) }}" class="image__link">
-                    <img src="{{ Storage::disk('s3')->url($item->img_url) }}" alt="{{ $item->name }}" class="post__img">
+                    <img src="{{ Storage::url($item->img_url) }}" alt="{{ $item->name }}" class="post__img">
                 </a>
             </div>
             @endforeach

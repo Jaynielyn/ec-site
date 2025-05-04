@@ -94,9 +94,8 @@ class PurchaseController extends Controller
             return redirect()->route('index')->with('error', '商品が見つかりませんでした。');
         }
 
-        // S3の画像URLを取得
         $imageUrl = $item->img_url
-        ? Storage::disk('s3')->url($item->img_url)
+        ? Storage::url($item->img_url)
         : asset('img/noimage.png');
         Log::info('Image URL: ' . $imageUrl);
 

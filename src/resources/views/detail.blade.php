@@ -11,7 +11,7 @@
         @csrf
         <div class="detail__form form__left">
             <div class="detail__image">
-                <img class="detail__img" src="{{ $item->img_url ? Storage::disk('s3')->url($item->img_url) : asset('img/noimage.png') }}">
+                <img class="detail__img" src="{{ $item->img_url ? Storage::url($item->img_url) : asset('img/noimage.png') }}">
             </div>
         </div>
 
@@ -27,9 +27,10 @@
                     <div class="act__like">
                         <img id="likeButton"
                             class="stars"
-                            src="{{ auth()->check() && auth()->user()->likes->contains('item_id', $item->id) ? asset('img/star-solid.svg') : asset('img/star-regular.svg') }}"
+                            src="{{ auth()->check() && auth()->user()->likes()->where('item_id', $item->id)->exists() ? asset('img/star-solid.svg') : asset('img/star-regular.svg') }}"
                             alt="いいね"
                             data-item-id="{{ $item->id }}">
+
                         <span id="likeCount" class="act__count">{{ $item->likes->count() ?? 0 }}</span>
                     </div>
 

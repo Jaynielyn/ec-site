@@ -13,7 +13,7 @@
 
         <div class="profile__image-section">
             @if($is_image)
-            <img class="profile__img" id="profile-image-preview" src="{{ Storage::disk('s3')->url('profile_images/' . Auth::id() . '.jpg') }}?v={{ time() }}" alt="プロフィール画像">
+            <img class="profile__img" id="profile-image-preview" src="{{ Storage::url('profile_images/' . Auth::id() . '.jpg') }}?v={{ time() }}" alt="プロフィール画像">
             @else
             <img class="profile__img" id="profile-image-preview" src="/img/default-profile.png" alt="デフォルトプロフィール画像">
             @endif
@@ -76,6 +76,4 @@
         }
     }
 </script>
-
-
 @endsection

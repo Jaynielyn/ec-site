@@ -15,7 +15,7 @@
             <input type="hidden" name="payment_method" id="payment-method-input" value="クレジットカード">
             <div class="left__top">
                 <div class="items__inner">
-                    <img class="img" src="{{ $item->img_url ? Storage::disk('s3')->url($item->img_url) : asset('img/noimage.png') }}">
+                    <img class="img" src="{{ $item->img_url ? Storage::url($item->img_url) : asset('img/noimage.png') }}">
                 </div>
                 <div class="items__inner items__name">
                     <h1 class="product__name">{{ $item->name ?? '商品名' }}</h1>
@@ -114,7 +114,7 @@
         const paymentOptions = document.querySelectorAll('input[name="payment_method"]');
 
         openModalButton.addEventListener('click', function() {
-            modal.style.display = 'block';
+            modal.style.display = 'flex';
         });
 
         closeModalButtons.forEach(button => {

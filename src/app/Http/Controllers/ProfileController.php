@@ -18,24 +18,21 @@ class ProfileController extends Controller
     public function mypage()
     {
         $is_image = false;
-        if (Storage::disk('s3')->exists('profile_images/' . Auth::id() . '.jpg')) {
+        if (Storage::disk('public')->exists('profile_images/' . Auth::id() . '.jpg')) {
             $is_image = true;
         }
 
-        // ログインユーザーの出品した商品を取得
         $listedItems = Item::where('user_id', Auth::id())->get();
-
-        // ログインユーザーが購入した商品を取得
         $purchasedItems = Item::whereIn('id', Sold::where('user_id', Auth::id())->pluck('item_id'))->get();
 
-        // 現在のユーザーを取得
-        $user = Auth::user();
+        // プロフィールを含めてユーザーを取得
+        $user = Auth::user()->load('profile');
 
         return view('mypage', [
             'is_image' => $is_image,
             'listedItems' => $listedItems,
             'purchasedItems' => $purchasedItems,
-            'user' => $user, // ユーザー情報を渡す
+            'user' => $user,
         ]);
     }
 
@@ -47,7 +44,7 @@ class ProfileController extends Controller
         $profile = $user->profile;
 
         $is_image = false;
-        if (Storage::disk('s3')->exists('profile_images/' . Auth::id() . '.jpg')) {
+        if (Storage::disk('public')->exists('profile_images/' . Auth::id() . '.jpg')) {
             $is_image = true;
         }
 
@@ -70,23 +67,20 @@ class ProfileController extends Controller
             'photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2500',
         ]);
 
-        // ユーザー情報の更新
         $user = Auth::user();
-        $id = Auth::id();
 
-        // プロフィール画像が選択された場合
         if ($request->hasFile('photo')) {
-            // 既存の画像を削除（S3上の画像を削除）
-            Storage::disk('s3')->delete('profile_images/' . Auth::id() . '.jpg');
+            // 既存の画像を削除（publicディスクの画像を削除）
+            $existingImage = 'profile_images/' . Auth::id() . '.jpg';
+            if (Storage::disk('public')->exists($existingImage)) {
+                Storage::disk('public')->delete($existingImage);
+            }
 
-            // 新しい画像をS3に保存（公開アクセス付き）
+            // 新しい画像をpublicディスクに保存
             $path = $request->photo->storeAs(
                 'profile_images',
                 Auth::id() . '.jpg',
-                [
-                    'disk' => 's3',
-                    'visibility' => 'public', // 公開アクセスを許可
-                ]
+                'public'
             );
         }
 
@@ -98,7 +92,6 @@ class ProfileController extends Controller
             'user_id' => Auth::id()
         ];
 
-        // プロフィールを更新（なければ新規作成）
         Profile::updateOrCreate(
             ['user_id' => Auth::id()],
             $profile
@@ -106,5 +99,4 @@ class ProfileController extends Controller
 
         return redirect()->route('mypage')->with('success', 'プロフィールが更新されました。');
     }
-
 }
