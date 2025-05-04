@@ -1,0 +1,252 @@
+.purchase__page {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    margin-top: 100px;
+}
+
+/* 左側 */
+.purchase__left {
+    width: 60%;
+    margin-left: 50px;
+}
+
+.left__top {
+    display: flex;
+    height: 30%;
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+}
+
+.items__inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.items__name {
+    margin-left: 110px;
+    margin-top: 40px;
+}
+
+.product__name {
+    font-size: 30px;
+}
+
+.price {
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.left__items {
+    display: flex;
+    justify-content: space-between;
+    height: 30%;
+}
+
+.left__second {
+    margin-top: 20px;
+}
+
+.left__third {
+    margin-top: -110px;
+}
+
+.items__ttl {
+    font-size: 24px;
+}
+
+.blue__link {
+    color: #0073cc !important;
+    text-decoration: none !important;
+}
+
+.blue__link:hover {
+    color: darkblue !important;
+}
+
+.payment__methods {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment__methods label {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.payment__methods input[type="radio"] {
+    margin-right: 10px;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+}
+
+.modal__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    width: 800px;
+    height: 600px;
+    max-width: 80%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.modal__content form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.modal__content h2 {
+    font-size: 34px;
+}
+
+.modal__content label {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.modal__content button {
+    padding: 10px;
+    background-color: #ff5555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close__modal {
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close__modal:hover {
+    background-color: #da190b;
+}
+
+#open-payment-modal {
+    background: none;
+    font-size: 16px;
+    color: blue;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#open-payment-modal:hover {
+    color: darkblue;
+    text-decoration: underline;
+}
+
+/* 右側 */
+.purchase__right {
+    width: 40%;
+    margin-right: 50px;
+}
+
+.box {
+    margin-left: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 70%;
+    height: 40%;
+    border: 1px solid #000000;
+}
+
+.box__top, .box__bottom {
+    margin-left: 50px;
+}
+
+.box__inner {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.box__bottom-inner {
+    margin-top: 30px;
+}
+
+.btn {
+    margin-top: 80px;
+    margin-left: 70px;
+    width: 70%;
+    height: 50px;
+    background-color: #ff5555;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .img {
+        width: 80%;
+        height: auto;
+    }
+
+    .purchase__right {
+        margin-right: 30px;
+    }
+
+    .box {
+        width: 100%;
+        margin: 0 auto;
+        margin-left: 15px;
+        box-sizing: border-box;
+    }
+
+    .box__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+        width: 100%;
+        overflow: hidden;
+        margin-left: -20px;
+    }
+
+    .product__name {
+        font-size: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .price {
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

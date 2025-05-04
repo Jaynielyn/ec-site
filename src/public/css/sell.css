@@ -1,0 +1,109 @@
+.sell__page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.sell__heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sell__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sell__inner {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.sell__ttl {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #5f5f5f;
+    padding-bottom: 10px;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #5f5f5f;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input__textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.box {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #5f5f5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.img__input {
+    display: none;
+}
+
+.img__upload-btn {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff5555;
+    padding: 10px 20px;
+    border: 2px solid #ff5555;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: transparent;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.sell__content {
+    margin-bottom: 15px;
+}
+
+.sell__content-under {
+    margin-bottom: 25px;
+}
+
+.sell__btn {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff5555;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 95%;
+    align-self: center;
+}
+
+.error {
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 18px;
+    color: red;
+}
